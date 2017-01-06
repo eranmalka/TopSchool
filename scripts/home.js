@@ -166,6 +166,7 @@ function showCourseDetails(coursedetails){
 	$('#main-container').empty();
 	$("#main-container").append("<div id='main-inner-ctr'><div id='ctr-header'><h3>Course "+coursedetails.name+"</h3></div><div id='ctr-img' style='background-image: url("+coursedetails.image+");'></div><div id='ctr-desc'><div><h1>"+coursedetails.name+"</h1><p>"+coursedetails.description+"</p></div></div><div id='ctr-student-list'><h4>students</h4><ol><div><li>eran malka</li><li>ilit serphoc</li><li>ksdnksn skdncksd</li></div><div><li>ksdnksn skdncksd</li><li>ksdnksn skdncksd</li><li>ksdnksn skdncksd</li></div><div><li>ksdnksn skdncksd</li><li>ksdnksn skdncksd</li><li>ksdnksn skdncksd</li></div></ol></div></div>");
 	$("#main-container").slideDown(1000);
+	
 }
 
 

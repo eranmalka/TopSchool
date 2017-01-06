@@ -27,7 +27,9 @@ switch ($method) {
 		echo json_encode ($schoolDb -> getData ("courses1"));
 	}
 	else {
-		echo json_encode ($schoolDb -> getDataId("courses1",$key));
+		$courseInfo = $schoolDb -> getDataId("courses1",$key);
+		$courseInfo['students'] = $schoolDb -> getAllStudentsInCourse($key);
+		echo json_encode ($courseInfo);
 	}
 	break;
   case 'POST':

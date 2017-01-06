@@ -46,6 +46,17 @@ class DataBase{
     	$data = $stmt->fetch();
 		return $data;	
 	}
+	
+	public function getAllStudentsInCourse($courseId){
+		$q = "SELECT student_course.student_id, students.name FROM `student_course` 
+				INNER JOIN students on students.id = student_course.student_id
+				WHERE student_course.course_id =$courseId";
+		$stmt = $this -> conn->prepare($q);
+		$stmt->execute();
+		$data = $stmt->fetchAll();
+		return $data;	
+	}
+	
 	//Todo - After insert return data
 	public function insertData($tableName, $data){
 		    $q = "INSERT INTO $tableName (name, phone, email, image) values ( \"{$data['name']}\", \"{$data['phone']}\", \"{$data['email']}\", \"{$data['image']}\");";
