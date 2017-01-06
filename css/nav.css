@@ -1,0 +1,84 @@
+.jumbotron-adding{
+	padding-top: 0;
+	padding-bottom: 0;
+	border-bottom:2px solid black;
+	margin:0;
+}
+
+.logo-image{
+	ddisplay: inline-block;
+	float:left;
+	width:70px;
+	border-radius: 50%;
+	height:70px;
+	margin-left: 200px;
+	background-image: url('http://localhost/project-3-3/images/logo.png');
+	background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+	margin-top:8px;
+	position:relative;
+}
+
+#nav-links{
+	position:relative;
+	float:left;
+	vertical-align:middle;
+	margin-top:45px;
+	margin-left:20px;
+}
+
+#nav-links > span{
+	font-weight: 600;
+}
+
+.nav-user-details{
+	display: inline-block;
+	float:right;
+	bborder:1px solid black;
+	width:200px;
+	height:80px;
+	margin-top:3px;
+	margin-right:150px;
+}
+
+.nav-user-details > div:nth-child(1){
+	position:relative;
+	margin-top:15px;
+	margin-bottom:5px;
+	float:left;
+
+}
+
+.nav-user-details  p{
+	font-size:16px;
+	margin-bottom:6px; 
+}
+
+.nav-user-details > div:nth-child(2){
+	display:inline block;
+	background-color: black;
+	width:75px;
+	height:75px;
+	float:right;
+	margin-right:5px;
+}
+
+.jumbotron{
+	background: #3B5998;
+	color: white;
+	font-weight: 600;
+}
+
+.jumbotron > a:visited { 
+    color: white;
+	font-weight: 600;
+}
+.jumbotron > span:hover{
+	color: white;
+	font-weight: 600;
+}
+
+a { color: inherit; } 
+
+

@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="css/AddStudentModal.css">
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="myModalLabel">Add Student</h4>
+          </div>
+          <div class="modal-body">
+				<div><label>Name:</label> <input id = "name" type="text"></div>
+				<div><label>Phone:</label> <input id = "phone" type="text"></div>
+				<div><label>Email:</label> <input id = "email" type="text"></div>
+				<div id="image-ctr"><label>Image:</label>
+					<input id = "image" type="file" name="fileToUpload">
+					<!--<div id="studentImage"></div>-->
+				</div>
+				<div><label>Courses:</label></div>
+				<div id="courses-check-list">
+					<ul>
+					</ul>
+				</div>
+			</div>
+			<div style="clear: both;"></div>
+          <div class="modal-footer">
+         	<button id="save-student" type="button" class="btn btn-primary">Save</button>
+			<!--<button id="delete-student" type="button" class="btn btn-danger">Delete</button>-->
+          </div>
+        </div>
+      </div>
+    </div>
