@@ -152,20 +152,36 @@ function validateCourseFields(courseDetails){
 //--click on student div and get student details
 $(document).on('click','.student-profile', function(){
 	var studentId = $(this).attr('data-student-id');
-	ajaxCall(console.log,'studentsManager.php', studentId);
+	ajaxCall(showStudentsDetails,'studentsManager.php', studentId);
 });
+
+function showStudentsDetails(studentdetails){
+	console.log(studentdetails.courses);
+	$('#main-container').empty();
+	//$('#main-container').css('display','normal')
+	$("#main-container").append("<div id='main-inner-ctr'><div id='ctr-header'><h3>Student Name:</h3></div><div id='ctr-img' style='background-image: url("+studentdetails.image+");'></div><div id='students-details'><p>"+studentdetails.name+"<span></span></p><p>"+studentdetails.phone+"<span></span></p><p>"+studentdetails.email+"<span></span></p></div><div id='student-courses-list'><ol></ol></div></div>");
+	$("#main-container").slideDown(1000);
+	for(var i=0; i<studentdetails.courses.length; i++){
+		$('#student-courses-list > ol').append('<li>'+studentdetails.courses[i].name+'</li>')
+	}
+}
 
 //--click on course div and get course details
 $(document).on('click','.course-profile', function(){
 	var courseId = $(this).attr('data-course-id');
 	ajaxCall(showCourseDetails,'coursesManager.php', courseId);
 });
-
+//build course div
 function showCourseDetails(coursedetails){
-	
+	console.log(coursedetails);
 	$('#main-container').empty();
-	$("#main-container").append("<div id='main-inner-ctr'><div id='ctr-header'><h3>Course "+coursedetails.name+"</h3></div><div id='ctr-img' style='background-image: url("+coursedetails.image+");'></div><div id='ctr-desc'><div><h1>"+coursedetails.name+"</h1><p>"+coursedetails.description+"</p></div></div><div id='ctr-student-list'><h4>students</h4><ol><div><li>eran malka</li><li>ilit serphoc</li><li>ksdnksn skdncksd</li></div><div><li>ksdnksn skdncksd</li><li>ksdnksn skdncksd</li><li>ksdnksn skdncksd</li></div><div><li>ksdnksn skdncksd</li><li>ksdnksn skdncksd</li><li>ksdnksn skdncksd</li></div></ol></div></div>");
+	$("#main-container").append("<div id='main-inner-ctr'><div id='ctr-header'><h3>Course "+coursedetails.name+"</h3></div><div id='ctr-img' style='background-image: url("+coursedetails.image+");'></div><div id='ctr-desc'><div><h1>"+coursedetails.name+"</h1><p>"+coursedetails.description+"</p></div></div><div id='ctr-student-list'><h4>students</h4><ol id='studentsInCourse'></ol></div></div>");
 	$("#main-container").slideDown(1000);
+	
+	for(var i=0; i<coursedetails.students.length; i++){
+	$('#studentsInCourse').append('<li>'+coursedetails.students[i].name+'</li>')
+	
+	}
 	
 }
 

@@ -33,21 +33,19 @@ switch ($method) {
 		echo json_encode ($schoolDb -> getData ("students"));
 	}
 	else {
-		echo json_encode ($schoolDb -> getDataId("students",$key));
+		$studentIno = $schoolDb -> getDataId("students",$key);
+		$studentIno['courses'] = $schoolDb -> getAllStudentCourses($key);
+		echo json_encode ($studentIno);
 	}
 	break;
   case 'POST':
-		print_r($_POST);
 		$data = $schoolDb -> insertData ("students", $_POST);
-		print_r("return student id" .$data['id']);
 		$studentCourses = [];
 		$studentId = $data['id'];
-		print_r('$data[courses] = ');
-		print_r($data['courses']);
-		foreach($data['courses'] as $courseNumber){
+		foreach($data['courses'] as $courseId){
 			$student = [];
 			$student['student_id'] = $studentId;
-			$student['course_id'] = $courseNumber;
+			$student['course_id'] = $courseId;
 			array_push($studentCourses,$student);
 		}
 		echo $schoolDb -> insertStudentCourses ($studentCourses);

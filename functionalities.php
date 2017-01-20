@@ -1,14 +1,5 @@
 <?php
 
-function printingToFile($val){
-//phpinfo();
-$fn="testwrite.txt" ;
-$myfile = fopen($fn, "w") or die("Unable to open file!".fn);
-fwrite($myfile, 'val=');
-fwrite($myfile, print_r($val, TRUE));
-fclose($myfile);
-	
-}
 class DataBase{
 	private $servername = "localhost";
 	private $username = "root";
@@ -47,10 +38,28 @@ class DataBase{
 		return $data;	
 	}
 	
+	public function checkLogInCredentials($tableName,$email, $pass) {
+		$q = "SELECT * FROM $tableName WHERE email='$email' AND pass='$pass';";
+		$stmt = $this -> conn->prepare($q);
+    	$stmt->execute();
+    	$data = $stmt->fetch();
+		return $data;	
+	}
+	
 	public function getAllStudentsInCourse($courseId){
 		$q = "SELECT student_course.student_id, students.name FROM `student_course` 
 				INNER JOIN students on students.id = student_course.student_id
 				WHERE student_course.course_id =$courseId";
+		$stmt = $this -> conn->prepare($q);
+		$stmt->execute();
+		$data = $stmt->fetchAll();
+		return $data;	
+	}
+	
+	public function getAllStudentCourses($studentId){
+		$q = "SELECT student_course.course_id, courses1.name FROM `student_course` 
+				INNER JOIN courses1 on courses1.id = student_course.course_id
+				WHERE student_course.student_id =$studentId";
 		$stmt = $this -> conn->prepare($q);
 		$stmt->execute();
 		$data = $stmt->fetchAll();

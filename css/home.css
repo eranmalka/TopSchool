@@ -198,8 +198,31 @@
 	position:relative;
 	float:left;
 	margin:20px;
-    background-size: cover;
+	margin-bottom: 40px
+    bbackground-size: cover;
+	background-size: 100%;
+	background-repeat: no-repeat;
 	background-position: center;
+}
+
+#students-details{
+	position:relative;
+	float:left;
+	bborder:1px solid black;
+	margin-left:10px;
+	margin-top:32px;
+}
+
+#students-details > p{
+	font-weight: 500;
+}
+#students-details > p:first-child{
+	text-transform: uppercase;
+	font-size: 20px;
+}
+
+#student-courses-list{
+	clear:both;
 }
 
 #ctr-desc{
@@ -247,4 +270,8 @@
 	float:left;
 	width:200px;
 	margin-bottom: 10px;
+}
+
+#student-courses-list > ol{
+	text-transform: uppercase;
 }
