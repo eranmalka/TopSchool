@@ -104,7 +104,7 @@ $("#image").change(function(){
             reader.onload = function (e) {
                 $('#studentImage').css('background-image', 'url(' + e.target.result +')');
             }
-            reader.readAsDataURL(thisImage.files[0]);
+       		reader.readAsDataURL(thisImage.files[0]);
       }
 });
 

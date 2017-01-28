@@ -97,6 +97,22 @@ class DataBase{
     	$stmt->execute();
 	}
 	
+	//inserts admin to db
+	public function insertAdminToDb($tableName, $data){
+		$name = $data['name']; $role = $data['role']; $phone = $data['phone']; $email = $data['email'];
+		$pass = $data['pass']; $image = $data['image'];
+/*		$q = "INSERT INTO $tableName (name, role, phone, email, pass, image) values "(\"$name\", \"$role\", \"$phone\",\"$email\", \"$pass\", \"$image\");";*/
+    	$values = <<<vvv
+		("$name", "$role", "$phone","$email","$pass","$image")
+vvv;
+		$q = "INSERT INTO $tableName (name, role, phone, email, pass, image) values".$values;
+		/*$q = "INSERT INTO $tableName (name, role, phone, email, pass, image) values (\"{$data['name']}\", \"{$data['role']}\", \"{$data['phone']}\",\"{$data['email']}\", \"{$data['pass']}\", \"{$data['image']}\");";*/
+		print_r('the db print');
+		print_r($q);
+    		$stmt = $this -> conn->prepare($q);
+    		$stmt->execute();
+			return $data;
+	}
 	
 	  public static function getInstance() {
         if(self::$instance === null) {

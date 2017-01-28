@@ -9,6 +9,10 @@ body {
 	margin:0 auto;
 }
 
+#form > p{
+	color:red;
+}
+
 .form-signin {
   max-width: 330px;
   padding: 15px;
@@ -43,3 +47,4 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+

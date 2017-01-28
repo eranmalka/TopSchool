@@ -3,7 +3,7 @@
 	  <div class="logo-image"></div> 
 	  <div id="nav-links"> | 
 		  <a href = "home.php"><span>School</span></a> |  
-		  <span>Administration</span>
+		  <a href = "administrators.php"><span>Administration</span></a>
 	  </div>
 	  <div class="nav-user-details">
 		  <div>

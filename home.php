@@ -26,26 +26,7 @@ require 'navigation-bar.php';
 			</div>	
 		</div>
 		<div id="main-container" class="col-sm-7">
-			<!--<div id='main-inner-ctr'>
-				<div id='ctr-header'>
-					<h3>Student Name:</h3>
-				</div>
-				<div id='ctr-img'>
-				</div>
-				<div id='students-details'>
-					<p>Eran Malka<span></span></p>
-					<p>0543499302<span></span></p>
-					<p>em9101@gmail.com<span></span></p>
-				</div>	
-				<div id="student-courses-list">
-					<ol>
-						<li>JAVA</li>
-						<li>PHP</li>
-						<li>Angular</li>
-						<li>C++</li>
-					</ol>
-				</div>	
-		 </div>-->
+		
 	</div>
 </div>
 

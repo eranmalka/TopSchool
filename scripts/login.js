@@ -19,6 +19,9 @@ function checkAuthorization(data){
 	console.log(typeof data);
 	if(obj.id === undefined) {
 		alert('Your email/password worng, try again');
+		var par = $('<p>').text('**Your email/password worng, try again');
+		$('#form').append(par);
+		console.log(par);
 	} else {
 		//Todo add redirct 
 		var url = 'home.php';
