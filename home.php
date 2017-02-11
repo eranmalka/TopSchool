@@ -1,3 +1,6 @@
+<?php
+require 'session/sessionManager.php';
+?>
 <link rel="stylesheet" href="css/home.css">
 <?php
 $title = "Home | To The Top School";
@@ -25,9 +28,12 @@ require 'navigation-bar.php';
 					
 			</div>	
 		</div>
-		<div id="main-container" class="col-sm-7">
-		
-	</div>
+	<!--	<div id="main-container"  class="col-sm-7"></div>-->
+		 <?php
+			$role = $_SESSION['user']['role'];
+			$str =  sprintf('<div id="main-container"  role= "%s" class="col-sm-7"></div>', $role);
+			echo $str;
+	?>
 </div>
 
 <?php

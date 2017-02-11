@@ -30,6 +30,32 @@ function getAllAdmins(callback,path, id) {
         });
 }
 
+function deleteAdmin(url){
+		$.ajax({
+          url:url,
+          method: 'DELETE'
+        }).done(function(data) {
+           console.log("1 success from server");
+       }).fail(function( reqObj, textStatus ) {  
+           console.log("error server call");
+     
+        });
+}
+
+function updateAdmin(val, path) {
+	$.ajax({
+          url:path,
+	      data: val,
+          method: 'PUT'
+        }).done(function(data) {
+           console.log("2 success from server");
+		   console.log(data);
+       }).fail(function( reqObj, textStatus ) {  
+           console.log("error server call");
+        });
+}
+
+
 function buildAdmin(data){
 	console.log(data);
 	for(var i = 0; i < data.length; i++){
@@ -53,6 +79,12 @@ $('#save-admin').on('click', function(){
 		var imageVal = $('#adminImagepreview').css('background-image');
 		adminDetails['image'] =imageVal.substring(5, imageVal.length - 2);
 		console.log(adminDetails);
+        var isEdieMode = $('#save-admin').attr('on-edit-mode');
+        if(isEdieMode){
+            alert('edit mode');
+            adminDetails['id'] = $('#save-admin').attr('adminId');
+            updateAdmin(adminDetails, 'administratorsManager.php/'+adminDetails['id']);
+        }else
 		saveAdminInServer('administratorsManager.php',adminDetails, console.log);
 		cleanForm();
 	}else {
@@ -96,3 +128,69 @@ $("#adminImage").change(function(){
             reader.readAsDataURL(thisImage.files[0]);
       }
 });
+
+//displaying admin-profile when clicked
+$(document).on('click','.admin-profile', function(){
+	var admintId = $(this).attr('data-admin-id');
+	getAllAdmins(showAdminDetails,'administratorsManager.php',admintId);
+});
+
+function showAdminDetails(adminDetails){
+	console.log('im in callback function', adminDetails);
+	$('#main-container').empty();
+	//$('#main-container').css('display','normal')
+	$("#main-container").append("<div id='main-inner-ctr'><div admin-id='"+adminDetails.id+"' id='ctr-header'><h3>Admin Details</h3><button class='delAdmin btn btn-danger'>Delete</button><button class='editAdmin btn btn-primary'>Edit</button></div><div id='ctr-img' style='background-image: url("+adminDetails.image+");'></div><div id='students-details'><h2>"+adminDetails.name+"<span></span></h2><p>Phone: "+adminDetails.phone+"<span></span></p><p>Email: "+adminDetails.email+"<span></span></p></div><div id='student-courses-list'><ol></ol></div></div>");
+	$("#main-container").slideDown(1000);
+}
+
+$(document).on('click','.delAdmin', function(){
+	var adminId = $(this).parent().attr('admin-id');
+	deleteAdmin('administratorsManager.php/'+adminId);
+	$('[data-admin-id="' + adminId + '"]').remove();
+	$('[admin-id="' + adminId + '"]').parent().remove();
+	$('#main-container').css('display', 'none');
+	
+});
+
+$(document).on('click','.editAdmin', function(){
+	var adminId = $(this).parent().attr('admin-id');
+	$('#save-admin').attr('on-edit-mode','yes').attr('adminId',adminId);
+	console.log(adminId);
+	getAllAdmins (prepareEdit, 'administratorsManager.php',adminId);
+});
+
+function prepareEdit(data){
+	$('#modal').modal('toggle');
+	var adminName = data.name;
+	var adminPhone = data.phone;
+	var adminEmail = data.email;
+	var adminPass = data.pass;
+	var adminRole = data.role;
+	var adminImg = data.image;
+	var adminNameInp = $('#name');
+	var adminPhoneInp = $('#phone');
+	var adminEmailInp = $('#email');
+	var adminPassInp = $('#password');
+	//var adminRoleInp = $('#password');
+	adminNameInp.val(adminName);
+	adminPhoneInp.val(adminPhone);
+	adminEmailInp.val(adminEmail);
+	adminPassInp.val(adminPass);
+	var inputSeries = $("input[type='radio']");
+    var textSpan = $('#roleSec span');
+    /*console.log(inputSeries);
+    console.log(textSpan.text());*/
+    inputSeries.each(function(){
+        console.log(adminRole);
+        console.log($(this).next().text());
+        if(adminRole == $(this).next().text()){
+            $(this).prop( "checked", true);
+            return;
+        }
+    })
+    
+    
+	$('#admin-image-ctr').append('<div id="adminImagepreview" style= "background-image:url('+adminImg+')"></div>');
+}
+
+

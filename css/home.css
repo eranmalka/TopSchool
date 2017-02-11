@@ -275,3 +275,15 @@
 #student-courses-list > ol{
 	text-transform: uppercase;
 }
+
+
+
+#main-container button {
+	width:60px;
+	margin-right: 10px;
+}
+
+#ctr-header > div{
+	margin-bottom: 10px;
+	display: inline-block;
+}

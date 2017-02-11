@@ -1,5 +1,4 @@
 <?php
-
 class DataBase{
 	private $servername = "localhost";
 	private $username = "root";
@@ -102,17 +101,61 @@ class DataBase{
 		$name = $data['name']; $role = $data['role']; $phone = $data['phone']; $email = $data['email'];
 		$pass = $data['pass']; $image = $data['image'];
 /*		$q = "INSERT INTO $tableName (name, role, phone, email, pass, image) values "(\"$name\", \"$role\", \"$phone\",\"$email\", \"$pass\", \"$image\");";*/
-    	$values = <<<vvv
+    	$values = <<<values
 		("$name", "$role", "$phone","$email","$pass","$image")
-vvv;
+values;
 		$q = "INSERT INTO $tableName (name, role, phone, email, pass, image) values".$values;
-		/*$q = "INSERT INTO $tableName (name, role, phone, email, pass, image) values (\"{$data['name']}\", \"{$data['role']}\", \"{$data['phone']}\",\"{$data['email']}\", \"{$data['pass']}\", \"{$data['image']}\");";*/
 		print_r('the db print');
 		print_r($q);
     		$stmt = $this -> conn->prepare($q);
     		$stmt->execute();
 			return $data;
 	}
+	
+	
+	public function deleteStudent($tableName, $id) {
+		$q = "DELETE FROM $tableName WHERE id=$id;";
+		$stmt = $this -> conn->prepare($q);
+    	$stmt->execute();	
+	}
+	
+	public function deleteCourse($tableName, $id) {
+		$q = "DELETE FROM $tableName WHERE id=$id;";
+		$stmt = $this -> conn->prepare($q);
+    	$stmt->execute();	
+	}
+	
+	public function deleteAdmin($tableName, $id) {
+		$q = "DELETE FROM $tableName WHERE id=$id;";
+		$stmt = $this -> conn->prepare($q);
+    	$stmt->execute();	
+	}
+	
+	public function updateStudent($tableName, $id, $data) {
+		$q = "UPDATE $tableName SET name='".$data['name']."', phone='".$data['phone']."', email='".$data['email']."',	image='".$data['image']."' WHERE id='".$id."';";
+		$stmt = $this -> conn->prepare($q);
+    	$stmt->execute();	
+		
+	}
+    
+    public function updateCourse($tableName, $id, $data) {
+        fwrite($myfile, '$data= ');
+        fwrite($myfile, print_r($data, TRUE));
+        fclose($myfile);
+		$q = "UPDATE $tableName SET name='".$data['name']."', description='".$data['description']."', image='".$data['image']."' WHERE id='".$id."';";
+		$stmt = $this -> conn->prepare($q);
+    	$stmt->execute();	
+		
+	}
+	
+   public function updateAdmin ($tableName, $id, $data){
+       $q = "UPDATE $tableName SET name='".$data['name']."', role='".$data['role']."', phone='".$data['phone']."',	email='".$data['email']."',pass='".$data['pass']."',image='".$data['image']."' WHERE id='".$id."';";
+		$stmt = $this -> conn->prepare($q);
+    	$stmt->execute();	
+		
+       
+   }
+	
 	
 	  public static function getInstance() {
         if(self::$instance === null) {

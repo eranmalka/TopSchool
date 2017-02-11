@@ -57,7 +57,10 @@
 
 .nav-user-details > div:nth-child(2){
 	display:inline block;
-	background-color: black;
+	background-image: url('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTauS-7_Ybak9ivW-8WH6e0b_Ey76VXHiQWS0nlocX9znageI6HTQ');
+	background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
 	width:75px;
 	height:75px;
 	float:right;
@@ -81,4 +84,14 @@
 
 a { color: inherit; } 
 
+div.nav-user-details > div:nth-child(1) > p:nth-child(1) > span {
+	font-size:11px;
+	color:#8B0000;
+	margin-left:5px;
+	vertical-align: text-top;
+	animation: blinker 3s linear infinite;
+}
+@keyframes blinker {  
+  80% { opacity: 0.3; }
+}
 

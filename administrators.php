@@ -1,3 +1,6 @@
+<?php
+require 'session/sessionManager.php';
+?>
 <link rel="stylesheet" href="css/administrations.css">
 <?php
 $title = "Administration | To The Top School";

@@ -12,20 +12,7 @@ $key = array_shift($request)+0;
 
 $schoolDb = DataBase::getInstance();
 
-/**
- GET
- 	/studentsManger.php
-	/studentsManger/{id}
- POST
- 	/studentsManger.php
- PUT
- 	/studentsManger.php/{id}
- DELETE
- 	/studentsManger.php/{id}
- PATCH 
- 	/studentsManger.php/{id} 
- 	
-*/
+
 
 switch ($method) {
   case 'GET': 
@@ -50,5 +37,22 @@ switch ($method) {
 		}
 		echo $schoolDb -> insertStudentCourses ($studentCourses);
 		break;
+	case 'PUT':
+			if(empty($key)){
+				echo json_encode('please send id');
+				break;
+			} 
+		$input = file_get_contents('php://input');
+		parse_str($input, $params);
+		echo $schoolDb -> updateStudent('students', $key, $params);
+		break;
+  case 'DELETE':
+		if(empty($key)){
+			echo json_encode('please send id');
+			break;
+		} 
+		$schoolDb -> deleteStudent('students', $key);
+		//$schoolDb -> deleteStudent ("students");
+	break;
 }
 ?>

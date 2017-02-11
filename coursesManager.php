@@ -1,15 +1,9 @@
 <?php
 require 'functionalities.php';
-//function that conveert data from mysql to utf8
-
-
+$fn="coursemanager.txt" ;
+$myfile = fopen($fn, "w") or die("Unable to open file!".fn);
 
 $schoolDb = DataBase::getInstance();
-//
-///
-//
-//
-////
 
 $method = $_SERVER['REQUEST_METHOD'];
 $request = [];
@@ -35,7 +29,24 @@ switch ($method) {
   case 'POST':
 		$schoolDb -> insertData2 ("courses1", $_POST);
 		break;
+  case 'PUT':
+        if(empty($key)){
+            echo json_encode('please send id');
+            break;
+        } 
+		$input = file_get_contents('php://input');
+        parse_str($input, $params);
+		echo $schoolDb -> updateCourse('courses1', $key, $params);
+		break;
+  case 'DELETE':
+		if(empty($key)){
+			echo json_encode('please send id');
+			break;
+		} 
+		$schoolDb -> deleteCourse('courses1', $key);
+		break;
 }
+
 
 
 

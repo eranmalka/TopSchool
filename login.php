@@ -1,3 +1,6 @@
+<?php
+require 'session/sessionManager.php';
+?>
 <script src="../login.js"></script>
 <?php
 $title = 'login'; 
